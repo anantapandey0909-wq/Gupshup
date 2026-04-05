@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Online | Gup Shup Cafe & Restro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-cream order-page">
+    <!-- Offer Banner -->
+    <div class="offer-banner text-center">
+        Use code <strong>GUPSHUP10</strong> for 10% off your first order! 🍔✨
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar solid-nav">
+        <div class="container nav-content">
+            <a href="index.html" class="brand">Gup Shup<span>.</span></a>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search for dishes...">
+            </div>
+            <button id="viewCartBtn" class="btn btn-primary nav-cart-btn">
+                🛒 Cart (<span id="cartCount">0</span>)
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Order Layout -->
+    <div class="container order-layout">
+        
+        <!-- Sidebar Categories -->
+        <aside class="category-sidebar">
+            <ul id="categoryTabs">
+                <li class="active" data-category="all">All Menu</li>
+                <li data-category="featured">⭐ Featured</li>
+                <li data-category="Starters">Starters</li>
+                <li data-category="Momos">Momos</li>
+                <li data-category="Main Course">Main Course</li>
+                <li data-category="Pizza">Pizza</li>
+                <li data-category="Breads">Breads</li>
+                <li data-category="Drinks">Drinks</li>
+                <li data-category="Desserts">Desserts</li>
+            </ul>
+        </aside>
+
+        <!-- Menu Feed -->
+        <main class="menu-feed">
+            <h2 id="currentCategoryTitle" class="feed-title text-brown-dark">All Menu</h2>
+            <div id="menuGrid" class="order-grid">
+                <!-- Items dynamically rendered here -->
+            </div>
+            
+            <div class="recommendations fade-in-up mt-3">
+                <h3 class="text-gold">You May Also Like</h3>
+                <div id="recsGrid" class="order-grid">
+                    <!-- Recommended items -->
+                </div>
+            </div>
+        </main>
+
+        <!-- Cart Sidebar -->
+        <aside id="cartSidebar" class="cart-sidebar hide-on-mobile">
+            <div class="cart-header">
+                <h3>Your Order</h3>
+                <button id="closeCartBtn" class="close-cart-btn">&times;</button>
+            </div>
+            
+            <div class="order-toggle">
+                <button class="toggle-btn active" data-type="delivery">Delivery</button>
+                <button class="toggle-btn" data-type="takeaway">Takeaway</button>
+            </div>
+            <p class="estimated-time" id="estTime">🕒 Estimated Delivery: 45 mins</p>
+
+            <div id="cartItems" class="cart-items">
+                <!-- Cart items go here -->
+                <div class="empty-cart">Your cart is empty</div>
+            </div>
+
+            <div class="cart-summary">
+                <div class="summary-line">
+                    <span>Subtotal</span>
+                    <span id="subtotalPrice">₹0</span>
+                </div>
+                <div class="summary-line">
+                    <span>Taxes (5%)</span>
+                    <span id="taxPrice">₹0</span>
+                </div>
+                <div class="summary-line" id="deliveryFeeLine">
+                    <span>Delivery Fee</span>
+                    <span id="deliveryPrice">₹40</span>
+                </div>
+                <div class="summary-total">
+                    <span>Total</span>
+                    <span id="totalPrice">₹0</span>
+                </div>
+                <button id="checkoutBtn" class="btn btn-primary w-100 mt-2" disabled>Proceed to Checkout</button>
+            </div>
+        </aside>
+
+    </div>
+
+    <!-- Checkout Modal Layout -->
+    <div id="checkoutModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="text-gold" style="margin-bottom: 1.5rem;">Checkout</h2>
+            <form id="checkoutForm" class="checkout-form">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" required placeholder="Sneha R.">
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" required placeholder="+91 XXXXX XXXXX">
+                </div>
+                <div class="form-group" id="addressGroup">
+                    <label>Delivery Address</label>
+                    <textarea required placeholder="Your full address..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Order Notes (Optional)</label>
+                    <input type="text" placeholder="e.g. Make it spicy!">
+                </div>
+                <div class="form-group">
+                    <label>Payment Method</label>
+                    <select>
+                        <option>Cash on Delivery</option>
+                        <option>UPI / Online</option>
+                        <option>Card on Delivery</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary w-100 mt-2">Place Order (<span id="checkoutTotal">₹0</span>)</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="order.js"></script>
+</body>
+</html>

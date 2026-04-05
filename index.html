@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gup Shup Cafe & Restro | Welcome</title>
+    <!-- Google Fonts: Inter and Playfair Display for elegant typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="#" class="brand">Gup Shup<span>.</span></a>
+            <div class="nav-links">
+                <a href="#home" class="active">Home</a>
+                <a href="#menu">Menu</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <a href="#menu" class="btn btn-outline nav-btn">Order Online</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero" id="home">
+        <!-- Background Overlay -->
+        <div class="hero-overlay"></div>
+        
+        <div class="container hero-content">
+            <!-- Badges -->
+            <div class="hero-badges fade-in-up" style="animation-delay: 0.1s;">
+                <span class="badge"><i class="icon-star">★</i> 4.9/5 on Google Reviews</span>
+                <span class="badge"><i class="icon-pin">📍</i> Heart of the City</span>
+            </div>
+
+            <!-- Headline & Tagline -->
+            <h1 class="hero-title fade-in-up" style="animation-delay: 0.3s;">
+                Fresh Flavors, Cozy Vibes, <br> <span class="text-gold">Great Moments.</span>
+            </h1>
+            
+            <p class="hero-tagline fade-in-up" style="animation-delay: 0.5s;">
+                Enjoy tasty food, relaxing ambience, and budget-friendly meals at Gup Shup Cafe and Restro.
+            </p>
+
+            <!-- Call to Actions -->
+            <div class="hero-ctas fade-in-up" style="animation-delay: 0.7s;">
+                <a href="#menu" class="btn btn-primary">Order Now</a>
+                <a href="#menu" class="btn btn-secondary">View Menu</a>
+                <a href="#book" class="btn btn-outline">Book a Table</a>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="scroll-indicator fade-in">
+            <span>Scroll to explore</span>
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Menu / Order Section -->
+    <section id="menu" class="section menu-section order-page" style="padding-top: 4rem;">
+        <div class="container">
+            <div class="section-header text-center fade-in-up" style="margin-bottom: 2rem;">
+                <span class="subtitle text-gold">Budget-Friendly Bites</span>
+                <h2>Explore Our Menu & Order Online</h2>
+                <p>Use code <strong>GUPSHUP10</strong> for 10% off your first order! 🍔✨</p>
+                
+                <!-- Menu Toolbar (Search + Cart Toggle) -->
+                <div class="menu-toolbar" style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; flex-wrap: wrap; gap: 1rem;">
+                    <div class="search-bar">
+                        <input type="text" id="searchInput" placeholder="Search for dishes..." style="border-color: rgba(62, 39, 35, 0.2); color: var(--color-brown-dark);">
+                    </div>
+                    <button id="viewCartBtn" class="btn btn-primary nav-cart-btn">
+                        🛒 Cart (<span id="cartCount">0</span>)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Main Order Layout -->
+            <div class="order-layout">
+                <!-- Sidebar Categories -->
+                <aside class="category-sidebar">
+                    <ul id="categoryTabs">
+                        <li class="active" data-category="all">All Menu</li>
+                        <li data-category="featured">⭐ Featured</li>
+                        <li data-category="Starters">Starters</li>
+                        <li data-category="Momos">Momos</li>
+                        <li data-category="Main Course">Main Course</li>
+                        <li data-category="Pizza">Pizza</li>
+                        <li data-category="Breads">Breads</li>
+                        <li data-category="Drinks">Drinks</li>
+                        <li data-category="Desserts">Desserts</li>
+                    </ul>
+                </aside>
+
+                <!-- Menu Feed -->
+                <main class="menu-feed">
+                    <h2 id="currentCategoryTitle" class="feed-title text-brown-dark">All Menu</h2>
+                    <div id="menuGrid" class="order-grid">
+                        <!-- Items dynamically rendered here -->
+                    </div>
+                    
+                    <div class="recommendations fade-in-up mt-3">
+                        <h3 class="text-gold">You May Also Like</h3>
+                        <div id="recsGrid" class="recs-grid">
+                            <!-- Recommended items -->
+                        </div>
+                    </div>
+                </main>
+
+                <!-- Cart Sidebar -->
+                <aside id="cartSidebar" class="cart-sidebar hide-on-mobile">
+                    <div class="cart-header">
+                        <h3>Your Order</h3>
+                        <button id="closeCartBtn" class="close-cart-btn" style="color:var(--color-brown-dark)">&times;</button>
+                    </div>
+                    
+                    <div class="order-toggle">
+                        <button class="toggle-btn active" data-type="delivery">Delivery</button>
+                        <button class="toggle-btn" data-type="takeaway">Takeaway</button>
+                    </div>
+                    <p class="estimated-time" id="estTime">🕒 Estimated Delivery: 45 mins</p>
+
+                    <div id="cartItems" class="cart-items">
+                        <!-- Cart items go here -->
+                        <div class="empty-cart">Your cart is empty</div>
+                    </div>
+
+                    <div class="cart-summary">
+                        <div class="summary-line">
+                            <span>Subtotal</span>
+                            <span id="subtotalPrice">₹0</span>
+                        </div>
+                        <div class="summary-line">
+                            <span>Taxes (5%)</span>
+                            <span id="taxPrice">₹0</span>
+                        </div>
+                        <div class="summary-line" id="deliveryFeeLine">
+                            <span>Delivery Fee</span>
+                            <span id="deliveryPrice">₹40</span>
+                        </div>
+                        <div class="summary-total">
+                            <span>Total</span>
+                            <span id="totalPrice">₹0</span>
+                        </div>
+                        <button id="checkoutBtn" class="btn btn-primary w-100 mt-2" disabled>Proceed to Checkout</button>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- Checkout Modal Layout -->
+    <div id="checkoutModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="text-gold" style="margin-bottom: 1.5rem;">Checkout</h2>
+            <form id="checkoutForm" class="checkout-form">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" required placeholder="Sneha R.">
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" required placeholder="+91 XXXXX XXXXX">
+                </div>
+                <div class="form-group" id="addressGroup">
+                    <label>Delivery Address</label>
+                    <textarea required placeholder="Your full address..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Order Notes (Optional)</label>
+                    <input type="text" placeholder="e.g. Make it spicy!">
+                </div>
+                <div class="form-group">
+                    <label>Payment Method</label>
+                    <select>
+                        <option>Cash on Delivery</option>
+                        <option>UPI / Online</option>
+                        <option>Card on Delivery</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary w-100 mt-2">Place Order (<span id="checkoutTotal">₹0</span>)</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section gallery-section bg-cream">
+        <div class="container">
+            <div class="section-header text-center fade-in-up">
+                <span class="subtitle text-gold">A Feast for the Eyes</span>
+                <h2>Our Gallery</h2>
+                <p>Take a peek into the cozy vibes and fresh flavors of Gup Shup.</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item fade-in-up">
+                    <img src="https://images.unsplash.com/photo-1543353071-873f17a7a088?auto=format&fit=crop&q=80&w=800" alt="Food preparation">
+                </div>
+                <div class="gallery-item fade-in-up" style="animation-delay: 0.1s;">
+                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=600" alt="Interior shots">
+                </div>
+                <div class="gallery-item wide fade-in-up" style="animation-delay: 0.2s;">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=800" alt="Happy customers">
+                </div>
+                <div class="gallery-item fade-in-up" style="animation-delay: 0.3s;">
+                    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&q=80&w=600" alt="Plated dish">
+                </div>
+                <div class="gallery-item fade-in-up" style="animation-delay: 0.4s;">
+                    <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&q=80&w=600" alt="Staff serving">
+                </div>
+                <div class="gallery-item fade-in-up" style="animation-delay: 0.5s;">
+                    <img src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&q=80&w=600" alt="Gourmet dish">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section id="video" class="section video-section">
+        <div class="container">
+            <div class="section-header text-center text-cream fade-in-up">
+                <span class="subtitle text-gold">Experience The Vibe</span>
+                <h2 class="text-cream">Watch Us in Action</h2>
+                <p>Sizzling food, pouring drinks, and an atmosphere you will love.</p>
+            </div>
+            <div class="video-grid">
+                <div class="video-card fade-in-up">
+                    <div class="video-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=800" alt="Food being prepared">
+                        <div class="play-btn">▶</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Fresh Prep</h3>
+                        <p>Our chefs hard at work.</p>
+                    </div>
+                </div>
+                <div class="video-card fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="video-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&q=80&w=800" alt="Drinks poured">
+                        <div class="play-btn">▶</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Perfect Pours</h3>
+                        <p>Crafting your favorite drinks.</p>
+                    </div>
+                </div>
+                <div class="video-card fade-in-up" style="animation-delay: 0.4s;">
+                    <div class="video-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=800" alt="Cafe ambience">
+                        <div class="play-btn">▶</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Cozy Evenings</h3>
+                        <p>Families & friends at Gup Shup.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="section reviews-section bg-cream">
+        <div class="container">
+            <div class="section-header text-center fade-in-up">
+                <span class="subtitle text-gold">What People Say</span>
+                <h2>Customer Reviews</h2>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card fade-in-up">
+                    <div class="stars text-gold">★★★★★</div>
+                    <p class="review-text">"Absolutely loved the food! The pasta and garlic bread were top tier. Very budget-friendly too."</p>
+                    <div class="reviewer">
+                        <div class="avatar">S</div>
+                        <div class="reviewer-info">
+                            <h4>Sneha R.</h4>
+                            <span>Local Guide</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="stars text-gold">★★★★★</div>
+                    <p class="review-text">"The staff is so friendly and accommodating. It’s an amazing place to hang out with friends and family."</p>
+                    <div class="reviewer">
+                        <div class="avatar">A</div>
+                        <div class="reviewer-info">
+                            <h4>Arjun M.</h4>
+                            <span>Food Blogger</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card fade-in-up" style="animation-delay: 0.4s;">
+                    <div class="stars text-gold">★★★★★</div>
+                    <p class="review-text">"Incredible ambience and truly relaxing vibes. Their cold coffee is a must-try. Highly recommend Gup Shup!"</p>
+                    <div class="reviewer">
+                        <div class="avatar">P</div>
+                        <div class="reviewer-info">
+                            <h4>Priya K.</h4>
+                            <span>Regular Customer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contact Section -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand fade-in-up">
+                    <h2>Gup Shup<span class="text-gold">.</span></h2>
+                    <p>Enjoy tasty food, relaxing ambience, and budget-friendly meals. Your cozy neighborhood haven.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon">IG</a>
+                        <a href="#" class="social-icon">FB</a>
+                        <a href="#" class="social-icon">TW</a>
+                    </div>
+                </div>
+                <div class="footer-links fade-in-up" style="animation-delay: 0.1s;">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#reviews">Reviews</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact fade-in-up" style="animation-delay: 0.2s;">
+                    <h3>Visit Us</h3>
+                    <ul class="contact-info">
+                        <li><span>📍</span> Raja Rd, Selakui, Central Hope Town, Uttarakhand.</li>
+                        <li><span>⏰</span> Open daily, closes at 10:30 PM.</li>
+                        <li><span>📞</span> +91 (XXX) XXX-XXXX</li>
+                    </ul>
+                    <a href="https://maps.google.com/?q=Raja+Rd,+Selakui,+Central+Hope+Town,+Uttarakhand" target="_blank" class="btn btn-primary btn-map mt-3">Open in Map</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Gup Shup Cafe & Restro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="order.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
